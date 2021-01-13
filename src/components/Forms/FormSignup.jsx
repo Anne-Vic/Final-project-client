@@ -3,10 +3,13 @@ import { withRouter } from "react-router-dom";
 import { UserContext } from "../Auth/UserContext";
 import apiHandler from "../../api/apiHandler";
 
+import { Link, Redirect } from "react-router-dom";
+
 class FormSignup extends Component {
   static contextType = UserContext;
 
   state = {
+    // username: "",
     email: "",
     password: "",
   };
@@ -38,6 +41,14 @@ class FormSignup extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
+        {/* <label htmlFor="username">Username</label>
+        <input
+          onChange={this.handleChange}
+          value={this.state.username}
+          type="text"
+          id="username"
+          name="username"
+        /> */}
         <label htmlFor="email">Email</label>
         <input
           onChange={this.handleChange}

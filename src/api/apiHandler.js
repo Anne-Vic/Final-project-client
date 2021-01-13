@@ -44,9 +44,9 @@ export default {
       .catch(errorHandler);
   },
 
-  getItems() {
+  getEvents() {
     return service
-      .get("/api/items")
+      .get("/api/events")
       .then((res) => res.data)
       .catch(errorHandler);
   },
