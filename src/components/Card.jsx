@@ -12,7 +12,7 @@ const Card = (props) => {
     <div className="eventText">
         <h1>{props.event.sport} - {props.event.city} </h1>
         <br/>
-        <p>{props.event.date} - {props.event.time}</p>
+        <p>{props.event.date} @ {props.event.time}  D-{props.event.delay}</p>
         <p>Level: {props.event.level}</p>
         <br/>
         <p>{props.event.description}</p>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import NavTop from '../NavTop';
 import NavBottom from '../NavBottom';
 import apiHandler from "../../api/apiHandler";
+import dayjs from "dayjs";
+const today = dayjs()
 
 export default class FormCreateEvent extends Component {
     state = {
@@ -23,6 +25,7 @@ export default class FormCreateEvent extends Component {
       const key = event.target.name;
       this.setState({ [key]: value });
       console.log(this.state)
+     
     };
 
     handleSubmit = (event) => {
@@ -52,11 +55,12 @@ export default class FormCreateEvent extends Component {
     }
 
     render() {
+      console.log("today is", today)
         return (
             <div >
               <NavTop/>
               <h1>Create your event</h1>
-                <form style={{display:"flex", flexDirection: "column"}} onSubmit={this.handleSubmit} enctype="multipart/form-data">
+                <form style={{display:"flex", flexDirection: "column"}} onSubmit={this.handleSubmit} encType="multipart/form-data">
                 <label className="label" htmlFor="sport">
               Sport
             </label>
@@ -116,6 +120,7 @@ export default class FormCreateEvent extends Component {
               placeholder="When ?"
               name="date"
               id="date"
+              min={today}
             />
             <label className="label" htmlFor="time">
               Time
@@ -132,7 +137,8 @@ export default class FormCreateEvent extends Component {
             />
            <label className="label" htmlFor="level">
           Choose your level:
-          <select value={this.state.value} onChange={this.handleChange} name="level" id="level">
+          <select value={this.state.value} onChange={this.handleChange} name="level" id="level" >
+          <option value="" >Select a level</option>
             <option value="Beginner">Beginner</option>
             <option value="Intermediate">Intermediate</option>
             <option value="Advanced">Advanced</option>

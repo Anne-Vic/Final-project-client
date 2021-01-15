@@ -52,6 +52,13 @@ export default {
       .catch(errorHandler);
   },
 
+  getMyEvents() {
+    return service
+      .get("/api/events/mine")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   getOneEvent(eventId) {
     console.log(eventId);
     return service

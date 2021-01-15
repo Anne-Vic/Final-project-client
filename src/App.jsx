@@ -25,7 +25,7 @@ function App() {
         <Route exact path="/events/:id" component={OneEvent} />
         <Route exact path="/myprofile" component={Profile} />
         <Route exact path="/myprofile/created-events" component={CreatedEvents} />
-        <Route exact path="/update" component={FormUpdateEvent} />
+        <Route exact path="/update/:id" component={FormUpdateEvent} />
 
         
         <ProtectedRoute exact path="/profile" component={Profile} />

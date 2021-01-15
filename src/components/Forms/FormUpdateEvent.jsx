@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import NavTop from '../NavTop';
 import NavBottom from '../NavBottom';
 import apiHandler from "../../api/apiHandler";
+import dayjs from "dayjs";
+const today = dayjs()
 
 export default class FormUpdateEvent extends Component {
     state = {
@@ -13,22 +15,54 @@ export default class FormUpdateEvent extends Component {
         time: "",
         eventImg: "/Duo.jpg",
         description: "",
-        status: "false",
+        isComplete: "false",
         level: ""
     };
     
 
+    componentDidMount() {
+      const eventId = this.props.match.params.id;
+  
+      apiHandler
+        .getOneEvent(eventId)
+        .then((apiResponse) => {
+          // console.log(apiResponse);
+          const event = apiResponse;
+          this.setState({
+            sport: event.sport,
+            date: event.date,
+            city: event.city,
+            country: event.country,
+            meetingPoint: event.meetingPoint,
+            time: event.time,
+            eventImg: event.eventImg,
+            description: event.description,
+            isComplete: event.isComplete,
+            level: event.level
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+
     handleChange = (event) => {
-      const value = event.target.value;
-      const key = event.target.name;
-      this.setState({ [key]: value });
+      const value =
+        event.target.type === "checkbox"
+          ? event.target.checked
+          : event.target.value;
+      const name = event.target.name;
+      this.setState({ [name]: value });
     };
 
     handleSubmit = (event) => {
       event.preventDefault();
-  
+      
+      const eventId = this.props.match.params.id;
+      console.log(eventId)
+
       apiHandler
-        .updateEvent( {
+        .updateEvent( eventId, {
           date: this.state.date,
           sport: this.state.sport,
           city: this.state.city,
@@ -37,7 +71,7 @@ export default class FormUpdateEvent extends Component {
           time: this.state.time,
           eventImg: this.state.eventImg,
           description: this.state.description,
-          status: this.state.status,
+          isComplete: this.state.isComplete,
           level: this.state.level,
         })
   
@@ -55,7 +89,7 @@ export default class FormUpdateEvent extends Component {
             <div >
               <NavTop/>
               <h1>Update your event</h1>
-                <form style={{display:"flex", flexDirection: "column"}} onSubmit={this.handleSubmit} enctype="multipart/form-data">
+                <form style={{display:"flex", flexDirection: "column"}} onSubmit={this.handleSubmit} encType="multipart/form-data">
                 <label className="label" htmlFor="sport">
               Sport
             </label>
@@ -107,9 +141,11 @@ export default class FormUpdateEvent extends Component {
               className="input"
               type="date"
               onChange={this.handleChange}
+              value={this.state.date}
               placeholder="When ?"
               name="date"
               id="date"
+              min={today}
             />
             <label className="label" htmlFor="time">
               Time
@@ -142,6 +178,15 @@ export default class FormUpdateEvent extends Component {
         <i className="icon fas fa-cloud-upload-alt"></i>
     </label>
     <input style ={{visibility:"hidden"}} type="file" id="eventImg" name="eventImg" ref={this.state.eventImg}></input>
+
+    <label className="form__label">Event full ?</label>
+          <input
+            className="form__input"
+            type="checkbox"
+            value={this.state.isComplete}
+            name="isComplete"
+            onChange={this.handleChange}
+          />
 
     <button>Update</button>
 
