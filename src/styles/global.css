@@ -18,3 +18,28 @@ a {
 ul {
   list-style-type: none;
 }
+
+/* ADDED BY AVD */
+
+i {
+  color: black;
+  font-size: 4vh;
+}
+
+.cardEvent {
+  display: flex;
+  margin: 30px;
+}
+
+.cardEvent img {
+  width: 40vw;
+  margin-right: 30px;
+}
+
+#profileImg {
+  width: 40px;
+}
+
+img {
+  -webkit-filter: grayscale(100%);
+}

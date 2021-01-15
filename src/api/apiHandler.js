@@ -6,7 +6,7 @@ const service = axios.create({
 });
 
 function errorHandler(error) {
-  if (error.response.data) {
+  if (error.response) {
     console.log(error.response && error.response.data);
     throw error;
   }
@@ -24,6 +24,7 @@ export default {
   },
 
   signin(userInfo) {
+    console.log(userInfo);
     return service
       .post("/api/auth/signin", userInfo)
       .then((res) => res.data)
@@ -47,6 +48,35 @@ export default {
   getEvents() {
     return service
       .get("/api/events")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  getOneEvent(eventId) {
+    console.log(eventId);
+    return service
+      .get(`/api/events/${eventId}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  addEvent(data) {
+    return service
+      .post("/api/events", data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  deleteEvent(eventId) {
+    return service
+      .delete(`/api/events/${eventId}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  updateEvent(eventId, data) {
+    return service
+      .patch(`/api/events/${eventId}`, data)
       .then((res) => res.data)
       .catch(errorHandler);
   },

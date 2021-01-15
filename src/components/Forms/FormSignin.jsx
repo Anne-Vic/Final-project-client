@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { UserContext } from "../Auth/UserContext";
 import { withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import apiHandler from "../../api/apiHandler";
 
 import { Link, Redirect } from "react-router-dom";
@@ -27,7 +28,7 @@ class FormSignin extends Component {
       .signin(this.state)
       .then((data) => {
         this.context.setUser(data);
-        this.props.history.push("/");
+        this.props.history.push("/events");
       })
       .catch((error) => {
         console.log(error);
@@ -37,17 +38,21 @@ class FormSignin extends Component {
 
   render() {
     if (this.context.user) {
-      return <Redirect to="/" />;
+      return <Redirect to="/events" />;
     }
 
     return (
-      <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+      <section>
+        <NavLink exact to="/" className="link"><i className="fas fa-home"></i></NavLink>
+        <form style={{display:"flex", flexDirection: "column"}} onChange={this.handleChange} onSubmit={this.handleSubmit}>
         <label htmlFor="email">Email</label>
         <input type="email" id="email" name="email" />
         <label htmlFor="password">Password</label>
         <input type="password" id="password" name="password" />
         <button>Submit</button>
       </form>
+      </section>
+      
     );
   }
 }

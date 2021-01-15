@@ -8,7 +8,7 @@ const NavTop = (props) => {
   return (
     <nav className="NavTop">
         {context.isLoggedIn && (
-         <NavLink exact to="/" className="link"><i class="fas fa-home"></i></NavLink>
+         <NavLink exact to="/events" className="link"><i className="fas fa-home"></i></NavLink>
         )}
         {!context.isLoggedIn && (<h1>Catch me if you train</h1>)}
     
