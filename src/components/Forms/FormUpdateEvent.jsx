@@ -170,7 +170,7 @@ export default class FormUpdateEvent extends Component {
 
         <label className="label" htmlFor="description">
           Describe your event:
-          <textarea value={this.state.value} onChange={this.handleChange} name="description" id="description"/>
+          <textarea value={this.state.description} onChange={this.handleChange} name="description" id="description"/>
         </label>
 
         <label className="label" htmlFor="eventImg">
@@ -192,7 +192,7 @@ export default class FormUpdateEvent extends Component {
 
 
                 </form>
-                <NavBottom/>    
+                <NavBottom path={this.props.history.location.pathname}/>   
             </div>
         );
     }

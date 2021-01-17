@@ -43,8 +43,9 @@ class FormSignup extends Component {
 
     return (
       <section>
-      <NavLink exact to="/" className="link"><i className="fas fa-home"></i></NavLink>
-      <form style={{display:"flex", flexDirection: "column"}} onSubmit={this.handleSubmit}>
+      <NavLink exact to="/" className="NavTop"><i className="fas fa-home"></i></NavLink>
+      <form onSubmit={this.handleSubmit}>
+        <div className="field">
         <label htmlFor="username">Username</label>
         <input
           onChange={this.handleChange}
@@ -52,7 +53,10 @@ class FormSignup extends Component {
           type="text"
           id="username"
           name="username"
+          autoFocus={true}
         />
+        </div>
+        <div className="field">
         <label htmlFor="email">Email</label>
         <input
           onChange={this.handleChange}
@@ -61,6 +65,8 @@ class FormSignup extends Component {
           id="email"
           name="email"
         />
+        </div>
+        <div className="field">
         <label htmlFor="password">Password</label>
         <input
           onChange={this.handleChange}
@@ -69,18 +75,20 @@ class FormSignup extends Component {
           id="password"
           name="password"
         />
+        </div>
 
+        <div className="field upload">
         <label className="label" htmlFor="profileImg">
-        Upload a profile picture
-        <i className="icon fas fa-cloud-upload-alt fa-2x"></i>
+        Upload a profile picture <span>-------</span>
+        <i className="icon fas fa-cloud-upload-alt"></i>
         </label>
-        <input type="file" id="profileImg" name="profileImg"></input>
+        <input className="hidden" type="file" id="profileImg" name="profileImg"></input>
+        </div>
+
         <button>Submit</button>
+        <br/>
+        <p>Already have an account ?<Link className="signin" to="/signin"> Sign in</Link></p>
       </form>
-      <div >
-      <p>Already have an account? </p>
-      <Link to="/signin">Sign in</Link>
-    </div>
       </section>
     );
   }

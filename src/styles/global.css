@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: var(--main-color);
 }
 
 html {
@@ -21,12 +22,19 @@ ul {
 
 /* ADDED BY AVD */
 
+:root {
+  --main-color: #0c084c;
+  --second-color: #ffa41b;
+}
+
+/* style={{props.path === "/created/coming-events" ? '#ffa41b' : '#0c084c'}} */
+
 i {
   color: black;
   font-size: 4vh;
 }
 
-.cardEvent {
+/* .cardEvent {
   display: flex;
   margin: 30px;
 }
@@ -34,12 +42,39 @@ i {
 .cardEvent img {
   width: 40vw;
   margin-right: 30px;
+} */
+
+.event.image {
+  -webkit-filter: grayscale(100%);
+}
+
+button {
+  background-color: var(--second-color);
+  color: var(--main-color);
+  border: none;
+  border-radius: 5px;
+}
+
+.auth {
+  margin-top: 10vh;
+  margin-bottom: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: 60vh;
+}
+
+.auth button {
+  width: 45vw;
+  height: 10vh;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 #profileImg {
-  width: 40px;
-}
-
-img {
-  -webkit-filter: grayscale(100%);
+  border-radius: 50%;
+  object-fit: cover;
 }

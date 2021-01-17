@@ -3,20 +3,24 @@ import NavTop from '../NavTop';
 import NavBottom from '../NavBottom';
 import apiHandler from "../../api/apiHandler";
 import dayjs from "dayjs";
-const today = dayjs()
+import "../../styles/NavBar.css"
+const today = dayjs().format("YYYY-MM-DD");
+
+
+
 
 export default class FormCreateEvent extends Component {
     state = {
-        date: "",
+        date: today,
         sport: "",
         city: "",
         country: "",
         meetingPoint: "",
-        time: "",
-        eventImg: "/Duo.jpg",
+        time: "09:00",
+        eventImg: "https://res.cloudinary.com/djfnm2nsv/image/upload/v1610900465/Catch/high_five_cryocell_bkavwx.webp",
         description: "",
-        status: "false",
-        level: ""
+        isComplete: "false",
+        level: "",
     };
     
 
@@ -55,112 +59,126 @@ export default class FormCreateEvent extends Component {
     }
 
     render() {
-      console.log("today is", today)
+      console.log("today SRING", String(today))
         return (
-            <div >
+            <div className="main" >
               <NavTop/>
-              <h1>Create your event</h1>
-                <form style={{display:"flex", flexDirection: "column"}} onSubmit={this.handleSubmit} encType="multipart/form-data">
-                <label className="label" htmlFor="sport">
-              Sport
-            </label>
-            <input
-              className="input"
-              type="text"
-              onChange={this.handleChange}
-              value={this.state.sport}
-              placeholder="Which sport do you want to practise ?"
-              name="sport"
-              id="sport"
-            />
-            <label className="label" htmlFor="Country">
-              Country
-            </label>
-            <input
-              className="input"
-              type="text"
-              onChange={this.handleChange}
-              value={this.state.country}
-              placeholder="In which country ?"
-              name="country"
-              id="country"
-            />
-            <label className="label" htmlFor="city">
-              City
-            </label>
-            <input
-              className="input"
-              type="text"
-              onChange={this.handleChange}
-              value={this.state.city}
-              placeholder="In which city ?"
-              name="city"
-              id="city"
-            />
-            <label className="label" htmlFor="meetingPoint">
-              Meeting Point
-            </label>
-            <input
-              className="input"
-              type="text"
-              onChange={this.handleChange}
-              value={this.state.meetingPoint}
-              placeholder="Choose a meeting point"
-              name="meetingPoint"
-              id="meetingPoint"
-            />
-            <label className="label" htmlFor="date">
-              When
-            </label>
-            <input
-              className="input"
-              type="date"
-              onChange={this.handleChange}
-              value={this.state.date}
-              placeholder="When ?"
-              name="date"
-              id="date"
-              min={today}
-            />
-            <label className="label" htmlFor="time">
-              Time
-            </label>
-            <input
-              className="input"
-              type="time"
-              step="1800"
-              onChange={this.handleChange}
-              value={this.state.time}
-              placeholder="At what time ?"
-              name="time"
-              id="time"
-            />
-           <label className="label" htmlFor="level">
-          Choose your level:
-          <select value={this.state.value} onChange={this.handleChange} name="level" id="level" >
-          <option value="" >Select a level</option>
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Advanced">Advanced</option>
-          </select>
-        </label>
+              <div >
+                {/* <div className="fixNav"></div> */}
+                
+                <form className="form create"  onSubmit={this.handleSubmit} encType="multipart/form-data">
+                <h3>Create your event</h3>
+                <div className="field">
+                <label className="label" htmlFor="sport"> Sport</label>
+                <input
+                  className="input"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.state.sport}
+                  placeholder="Tennis, Running, Boxing..."
+                  name="sport"
+                  id="sport"
+                />
+                </div>
 
-        <label className="label" htmlFor="description">
-          Describe your event:
-          <textarea value={this.state.value} onChange={this.handleChange} name="description" id="description"/>
-        </label>
+                <div className="field">
+                <label className="label" htmlFor="Country"> Country</label>
+                <input
+                  className="input"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.state.country}
+                  // placeholder="In which country ?"
+                  name="country"
+                  id="country"
+                />
+                </div>
+            
+                <div className="field">
+                <label className="label" htmlFor="city">City</label>
+                <input
+                  className="input"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.state.city}
+                  // placeholder="In which city ?"
+                  name="city"
+                  id="city"
+                />
+                </div>
+            
+                <div className="field">
+                <label className="label" htmlFor="meetingPoint">Meeting Point</label>
+                <input
+                  className="input"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.state.meetingPoint}
+                  placeholder="Metro station, park..."
+                  name="meetingPoint"
+                  id="meetingPoint"
+                />
+                </div>
+            
+                <div className="field">
+                <label className="label" htmlFor="date">When</label>
+                <input
+                  className="input"
+                  type="date"
+                  onChange={this.handleChange}
+                  value={this.state.date}
+                  // placeholder="When ?"
+                  name="date"
+                  id="date"
+                  min={today}
+                />
+                </div>
+            
+                <div className="field">
+                <label className="label" htmlFor="time">Time</label>
+                <input
+                  className="input"
+                  type="time"
+                  step="1800"
+                  onChange={this.handleChange}
+                  value={this.state.time}
+                  // placeholder="At what time ?"
+                  name="time"
+                  id="time"
+                />
+                </div>
 
-        <label className="label" htmlFor="eventImg">
-        Upload an image for your event
-        <i className="icon fas fa-cloud-upload-alt"></i>
-    </label>
-    <input style ={{visibility:"hidden"}} type="file" id="eventImg" name="eventImg" ref={this.state.eventImg}></input>
+                <div className="field">
+                <label className="label" htmlFor="level" style={{marginBottom:"0"}}>
+                {/* Choose your level: */}
+                <select value={this.state.value} onChange={this.handleChange} name="level" id="level" >
+                <option value="" >Select a level</option>
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                </select>
+                </label>
+                </div>
 
-    <button>Create</button>
+                <div className="field">
+                <label className="label" htmlFor="description">Describe your event:</label>
+                <textarea maxLength="100" rows="3" value={this.state.value} onChange={this.handleChange} name="description" id="description" placeholder="Few words about this event...(100 characters max)"/>
+                </div>
 
-
+        
+                <div className="field upload">
+                <label className="label" htmlFor="eventImg">Upload an image for your event <span>----</span>
+                <i className="icon fas fa-cloud-upload-alt"></i>
+                </label>
+                <input style ={{visibility:"hidden"}} type="file" id="eventImg" name="eventImg" ref={this.state.eventImg}></input>
+                </div>
+        
+                <button>Create</button>
+              
+                {/* <div className="fixBot"></div> */}
                 </form>
-                <NavBottom/>    
+                </div>
+                <NavBottom path={this.props.history.location.pathname}/>   
             </div>
         );
     }

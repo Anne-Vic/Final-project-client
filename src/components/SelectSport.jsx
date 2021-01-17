@@ -17,7 +17,7 @@ export default class SelectSport extends Component {
         return (
             <div>
                 <select name="sport" onChange={this.props.handleFilterSport}>
-                    <option value="">Sport ? </option>
+                    <option value="">Sport</option>
                     {this.state.allEvents.sort((a,b)=> a.sport.localeCompare(b.sport)).map(event => {
                     return (
                         <option value={event.sport}>{event.sport}</option>

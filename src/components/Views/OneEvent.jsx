@@ -6,6 +6,8 @@ import apiHandler from "../../api/apiHandler";
 import NavTop from '../NavTop';
 import NavBottom from '../NavBottom';
 
+import "../../styles/Card.css";
+
 export default class OneEvent extends Component {
     state = {
         event : null,
@@ -26,17 +28,20 @@ export default class OneEvent extends Component {
           }
           console.log(this.state.event)
         return (
-            <div className="cardOneEvent">
-                <NavTop/> 
-                <h1>Created by {this.state.event.owner.username} <img id="profileImg" src={this.state.event.owner.profileImg} alt={this.state.event.owner.username}/></h1>
-                <strong>{this.state.event.sport}</strong>
-                <p><strong>Where:</strong>{this.state.event.city} - {this.state.event.meetingPoint}</p>
-                <p><strong>When:</strong>{this.state.event.date} - {this.state.event.time}</p>
-                <p><strong>Level:</strong>{this.state.event.level}</p>
-                <img src={this.state.event.eventImg} alt={this.state.event.sport}/>
+            <div className="middle">
+                <NavTop/>
+                <div className="card one">
+                <strong className="center">{this.state.event.sport}</strong>
+                <hr/>
+                <strong className="owner">Created by {this.state.event.owner.username} <img id="profileImg" src={this.state.event.owner.profileImg} alt={this.state.event.owner.username}/></strong>
+                <p><strong>Where: </strong>{this.state.event.city} - {this.state.event.meetingPoint}</p>
+                <p><strong>When: </strong>{this.state.event.date} - {this.state.event.time}</p>
+                <p><strong>Level: </strong>{this.state.event.level}</p>
+                <img className="event image" src={this.state.event.eventImg} alt={this.state.event.sport}/>
                 <p>{this.state.event.description}</p>
-                <button>I'm interested !</button>
-                <NavBottom/>   
+                <button className="interested" >I'm interested !</button>
+                </div>
+                <NavBottom/>  
             </div>
      
         )

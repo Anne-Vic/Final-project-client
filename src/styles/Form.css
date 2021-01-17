@@ -1,0 +1,92 @@
+/* SIGN IN / SIGN UP */
+
+form {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  margin: 10vh 10vw;
+  justify-content: center;
+}
+
+form .field {
+  display: flex;
+  flex-direction: column;
+  margin: 3vh 0;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 2vh;
+}
+
+input {
+  width: 78vw;
+}
+
+.hidden {
+  display: none;
+}
+
+i {
+  color: var(--main-color);
+}
+
+.upload {
+  display: flex;
+  justify-content: space-between;
+}
+
+span {
+  visibility: hidden;
+}
+
+form button {
+  width: 45vw;
+  height: 5vh;
+  /* font-size: 1.5rem; */
+  font-weight: bold;
+  align-self: center;
+}
+
+form p,
+h3 {
+  align-self: center;
+}
+
+/* CREATE EVENT */
+
+.fixNav {
+  height: 10vh;
+}
+
+.fixBot {
+  height: 10vh;
+  position: relative;
+  bottom: 0vh;
+}
+
+/* .form.create {
+  position: relative;
+  top: 10vh;
+  bottom: 10vh;
+} */
+
+.form.create .field {
+  margin: 1vh 0;
+}
+
+.form.create select,
+option {
+  background-color: white;
+  color: var(--main-color);
+  border: none;
+}
+
+.main {
+  position: relative;
+  top: 12vh;
+}
+
+.main .field.upload {
+  margin-bottom: 0;
+}

@@ -8,9 +8,13 @@ import NavBottom from '../NavBottom';
 import Card from "../Card";
 import dayjs from "dayjs";
 import SelectLevel from "../SelectLevel";
-import SelectSport from "../SelectSport";
-import SelectCity from "../SelectCity";
+import Select from "../Select";
+import "../../styles/Card.css";
+import {NumberEvents} from "../../utils.js"
 const today = dayjs();
+
+
+
 
 export default class Events extends Component {
     state = {
@@ -88,16 +92,22 @@ export default class Events extends Component {
     // const diff = today.diff(date1, "d")
     // console.log(this.state.allEvents[3])
     //     console.log(diff)}
-    console.log(this.state)
-   
+    console.log(this.state);
+    const lengthEvent = this.filterAll().filter(event => event.delay >=0 && !event.isComplete).length;
         return (
             <div>
-                <SelectCity  filter="City" handleFilterCity={this.handleChange}/>
-                <SelectSport filter="Sport" handleFilterSport={this.handleChange}/>
-                <SelectLevel filter="Level" handleFilterLevel={this.handleChange}/>
-                {this.filterAll().filter(event => event.delay >=0 && !event.isComplete )/*.filter(event => event.sport === this.state.filSport).filter(event => event.level === this.state.filLevel)*/.sort((a,b) => a.delay - b.delay).map(event => {
+                <div className="NavSearch">
+                <Select className="filter" filter="city" handleFilter={this.handleChange}/>
+                <Select className="filter" filter="sport" handleFilter={this.handleChange}/>
+                <SelectLevel className="filter" filter="Level" handleFilterLevel={this.handleChange}/>
+                </div>
+                <div className="invisible" >Oups you found me</div>
+                <strong className="number events">{NumberEvents(lengthEvent)}</strong>
+                {this.filterAll().filter(event => event.delay >=0 && !event.isComplete ).sort((a,b) => a.delay - b.delay).map(event => {
                     return (
+                        <>
                         <Card event={event}/>
+                        </>
                         // <div  key={event._id}>
                         //     <Link className="cardEvent" to={`/events/${event._id}` }>
                         //     <div className="eventImg">
@@ -117,7 +127,9 @@ export default class Events extends Component {
                         // </div>
                     )
                 })}
-                <NavBottom/>
+                
+                <NavBottom path={this.props.history.location.pathname}/>
+                <div className="invisible" >Oups you found me</div>
             </div>
         )
     }
