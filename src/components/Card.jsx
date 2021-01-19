@@ -24,11 +24,11 @@ const Card = (props) => {
     </div>
     <div>
     <p>{props.event.description}</p>
-    <br/>
+    {/* <br/> */}
     </div>
     <div className="eventAbout">
         
-        {props.event.owner && <p className="owner">Created by {props.event.owner.username} <img id="profileImg" src={props.event.owner.profileImg} alt={props.event.owner.username}/> </p>}
+        {props.event.owner && <p className="owner">Created by {props.event.owner.username} <span >-----</span><img id="profileImg" src={props.event.owner.profileImg} alt={props.event.owner.username}/> </p>}
         {/* <p>{props.history}</p> */}
     </div>
     </Link>

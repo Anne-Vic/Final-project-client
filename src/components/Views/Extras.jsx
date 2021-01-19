@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import apiHandler from "../../api/apiHandler";
 import NavTop from '../NavTop';
 import NavBottom from '../NavBottom';
+import PopUp from '../../components/PopUp.jsx';
 import { withUser } from "../Auth/withUser";
 
 import "../../styles/NavBar.css"
@@ -50,6 +51,7 @@ import "../../styles/NavBar.css"
 
 const Extras = (props) => {
     const { context } = props;
+    
   
     function handleLogout() {
       apiHandler
@@ -62,15 +64,20 @@ const Extras = (props) => {
           console.log(error);
         });
     }
+
+    // function handlePopUp() {
+    //   if (this.state.display )
+    // }
   
     return (
       <nav >
           <NavTop/>
           <div className="Extras">
-              <button >Stat</button>
-              <button >Chrono</button>
-              <button >Update profile</button>
-              <button onClick={handleLogout}>Logout</button>
+              <button /*onClick={handlePopUp} style={{display: this.state.display}}*/>Stat</button>
+              <button /*onClick={handlePopUp} style={{display: this.state.display}}*/>Chrono</button>
+              <button /*onClick={handlePopUp} style={{display: this.state.display}}*/>Update profile</button>
+              <button onClick={handleLogout} /*style={{display: this.state.display}}*/>Logout</button>
+              <PopUp display="none"/>
           </div>
           <NavBottom path={props.history.location.pathname}/>
       </nav>

@@ -67,6 +67,20 @@ export default {
       .catch(errorHandler);
   },
 
+  getMessages(eventId) {
+    return service
+      .get(`/api/messages/by-event/${eventId}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  addMessage(eventId, data) {
+    return service
+      .post(`/api/messages/by-event/${eventId}`, data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   addEvent(data) {
     return service
       .post("/api/events", data)

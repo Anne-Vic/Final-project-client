@@ -13,14 +13,12 @@ export default class FormUpdateEvent extends Component {
         country: "",
         meetingPoint: "",
         time: "",
-        // eventImg: "",
         description: "",
         isComplete: "false",
         level: ""
     };
 
-    imageRef = React.createRef(); 
-    
+    // imageRef = React.createRef();    
 
     componentDidMount() {
       const eventId = this.props.match.params.id;
@@ -57,23 +55,25 @@ export default class FormUpdateEvent extends Component {
       this.setState({ [name]: value });
     };
 
-    handleSubmit = (event) => {
-      event.preventDefault();
+    
 
-      const fd = new FormData();
+    handleSubmit = (event) => {
+
+      event.preventDefault();
   
-      for (let key in this.state) {
-        fd.append(key, this.state[key]);
-      }
+      // const fd = new FormData();
   
-      fd.append("eventImg", this.imageRef.current.files[0]);
+      // for (let key in this.state) {
+      //   fd.append(key, this.state[key]);
+      // }
+  
+      // fd.append("eventImg", this.imageRef.current.files[0]);
 
       // fd.append("isComplete",  this.state.isComplete)
-      
-      const eventId = this.props.match.params.id;
-      console.log("fd", fd)
-      console.log(this.imageRef)
 
+      // console.log(fd)
+      // const eventId = this.props.match.params.id;
+    
       apiHandler
         .updateEvent( eventId, fd)
   
@@ -181,21 +181,22 @@ export default class FormUpdateEvent extends Component {
     </label>
     <input style ={{visibility:"hidden"}} type="file" id="eventImg" name="eventImg" ref={this.imageRef}></input>
 
-      <label>
-          Event full ?
+    <label className="form__label">Event full ?</label>
           <input
-            name="isComplete"
+            className="form__input"
             type="checkbox"
-            checked={this.state.isComplete}
-            onChange={this.handleChange} />
-        </label>
+            value={this.state.isComplete}
+            name="isComplete"
+            onChange={this.handleChange}
+          />
+
 
 
     <button>Update</button>
 
 
                 </form>
-                {/* <NavBottom path={this.props.history.location.pathname}/>    */}
+                {/* <NavBottom path={this.props.history.location.pathname}/> */}
             </div>
         );
     }

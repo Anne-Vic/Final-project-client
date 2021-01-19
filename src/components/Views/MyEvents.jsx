@@ -19,6 +19,11 @@ export default class Events extends Component {
         allEvents : []
     }
 
+    // handleToggle = (value) => {
+    //     this.setState({ isComplete: !value });
+    //     console.log("key and value", value)
+    //   };
+
     handleDelete = (eventId) => {
         apiHandler
           .deleteEvent(eventId)
@@ -65,7 +70,7 @@ export default class Events extends Component {
                         <Link  to={`/events/${event._id}` }>
                         <div className="eventTop">
                         <div className="eventImg create">
-                            <img src={event.eventImg} alt={event.sport}/>
+                            <img className="event image" src={event.eventImg} alt={event.sport}/>
                         </div>
                         <div className="eventInfo create">
                             <p><strong>{event.sport} - {event.city} </strong></p>
@@ -81,8 +86,9 @@ export default class Events extends Component {
                             <NavLink exact to={`/update/${event._id}`} className="link"><i className="fas fa-edit"></i></NavLink> 
                             {/* <i className="fas fa-edit"><NavLink exact to={`/update/${event._id}`} className="link"/></i>   */}
                             <i className="fas fa-trash" onClick={() => this.handleDelete(event._id)}></i>
-                            {event.isComplete && <i className="fas fa-toggle-on" name="isComplete" value={event.isComplete} ></i>}
-                            {!event.isComplete && <i className="fas fa-toggle-off"></i>}
+                            {/* {event.isComplete && <i className="fas fa-toggle-on" name="isComplete" value={event.isComplete} ></i>}
+                            {!event.isComplete && <i className="fas fa-toggle-off"></i>} */}
+                            { event.isComplete ? <i className="fas fa-toggle-on" name="isComplete" value={event.isComplete} onClick={() => this.handleToggle()} ></i> :  <i className="fas fa-toggle-off" name="isComplete" value={event.isComplete} onClick={(event) => this.handleToggle(event._id)}></i> }
                             </div>
                             </div>
                         </div>  
@@ -96,7 +102,7 @@ export default class Events extends Component {
                         <Link  to={`/events/${event._id}` }>
                         <div className="eventTop">
                         <div className="eventImg create">
-                            <img src={event.eventImg} alt={event.sport}/>
+                            <img className="event image" src={event.eventImg} alt={event.sport}/>
                         </div>
                         <div className="eventInfo create">
                             <p><strong>{event.sport} - {event.city} </strong></p>
@@ -112,7 +118,7 @@ export default class Events extends Component {
                             <NavLink exact to={`/update/${event._id}`} className="link"><i className="fas fa-edit"></i></NavLink> 
                             {/* <i className="fas fa-edit"><NavLink exact to={`/update/${event._id}`} className="link"/></i>   */}
                             <i className="fas fa-trash" onClick={() => this.handleDelete(event._id)}></i>
-                            {event.isComplete && <i className="fas fa-toggle-on" name="isComplete" value={event.isComplete} ></i>}
+                            {event.isComplete && <i className="fas fa-toggle-on" name="isComplete" value={event.isComplete} onClick={() => this.handleToggle()} ></i>}
                             {!event.isComplete && <i className="fas fa-toggle-off"></i>}
                             </div>
                             </div>

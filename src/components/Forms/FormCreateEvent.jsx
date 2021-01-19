@@ -17,12 +17,13 @@ export default class FormCreateEvent extends Component {
         country: "",
         meetingPoint: "",
         time: "09:00",
-        eventImg: "https://res.cloudinary.com/djfnm2nsv/image/upload/v1610900465/Catch/high_five_cryocell_bkavwx.webp",
+        // eventImg: "https://res.cloudinary.com/djfnm2nsv/image/upload/v1610900465/Catch/high_five_cryocell_bkavwx.webp",
         description: "",
         isComplete: "false",
         level: "",
     };
-    
+
+    imageRef = React.createRef();     
 
     handleChange = (event) => {
       const value = event.target.value;
@@ -34,19 +35,24 @@ export default class FormCreateEvent extends Component {
 
     handleSubmit = (event) => {
       event.preventDefault();
+
+      const fd = new FormData();
+  
+      for (let key in this.state) {
+        fd.append(key, this.state[key]);
+      }
+      console.log("image ref", this.imageRef)
+      fd.append("eventImg", this.imageRef.current.files[0]);
+
+      // fd.append("isComplete",  this.state.isComplete)
+      
+      // const eventId = this.props.match.params.id;
+      console.log("fd", fd)
+      console.log(this.imageRef.current.files[0])
   
       apiHandler
         .addEvent( {
-          date: this.state.date,
-          sport: this.state.sport,
-          city: this.state.city,
-          country: this.state.country,
-          meetingPoint: this.state.meetingPoint,
-          time: this.state.time,
-          eventImg: this.state.eventImg,
-          description: this.state.description,
-          status: this.state.status,
-          level: this.state.level,
+         fd
         })
   
         .then((apiResponse) => {
@@ -63,8 +69,8 @@ export default class FormCreateEvent extends Component {
         return (
             <div className="main" >
               <NavTop/>
-              <div >
-                {/* <div className="fixNav"></div> */}
+              {/* <div > */}
+              <div className="invisible" >Oups you found me</div>
                 
                 <form className="form create"  onSubmit={this.handleSubmit} encType="multipart/form-data">
                 <h3>Create your event</h3>
@@ -170,15 +176,15 @@ export default class FormCreateEvent extends Component {
                 <label className="label" htmlFor="eventImg">Upload an image for your event <span>----</span>
                 <i className="icon fas fa-cloud-upload-alt"></i>
                 </label>
-                <input style ={{visibility:"hidden"}} type="file" id="eventImg" name="eventImg" ref={this.state.eventImg}></input>
+                <input style ={{visibility:"hidden"}} type="file" id="eventImg" name="eventImg" ref={this.imageRef}></input>
                 </div>
         
                 <button>Create</button>
               
                 {/* <div className="fixBot"></div> */}
                 </form>
-                </div>
-                <NavBottom path={this.props.history.location.pathname}/>   
+                {/* </div> */}
+                {/* <NavBottom path={this.props.history.location.pathname}/>    */}
             </div>
         );
     }

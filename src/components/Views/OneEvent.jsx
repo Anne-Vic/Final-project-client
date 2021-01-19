@@ -28,18 +28,19 @@ export default class OneEvent extends Component {
           }
           console.log(this.state.event)
         return (
-            <div className="middle">
+            <div>
                 <NavTop/>
-                <div className="card one">
+                <div className="invisible" >Oups you found me</div>
+                <div className="middle card one">
                 <strong className="center">{this.state.event.sport}</strong>
                 <hr/>
-                <strong className="owner">Created by {this.state.event.owner.username} <img id="profileImg" src={this.state.event.owner.profileImg} alt={this.state.event.owner.username}/></strong>
+                <strong className="owner">Created by {this.state.event.owner.username} <span >-----</span><img id="profileImg" src={this.state.event.owner.profileImg} alt={this.state.event.owner.username}/></strong>
                 <p><strong>Where: </strong>{this.state.event.city} - {this.state.event.meetingPoint}</p>
                 <p><strong>When: </strong>{this.state.event.date} - {this.state.event.time}</p>
                 <p><strong>Level: </strong>{this.state.event.level}</p>
                 <img className="event image" src={this.state.event.eventImg} alt={this.state.event.sport}/>
                 <p>{this.state.event.description}</p>
-                <button className="interested" >I'm interested !</button>
+                <button className="interested"><NavLink to={`/messages/by-event/${this.state.event._id}` }>I'm interested</NavLink></button>
                 </div>
                 <NavBottom/>  
             </div>

@@ -12,6 +12,7 @@ import FormCreateEvent from "./components/Forms/FormCreateEvent";
 import FormUpdateEvent from "./components/Forms/FormUpdateEvent";
 import MyEvents from "./components/Views/MyEvents";
 import Extras from "./components/Views/Extras";
+import Messages from "./components/Views/Messages"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/events" component={Events} />
         <Route exact path="/events/create" component={FormCreateEvent} />
+        <Route exact path="/messages/by-event/:id" component={Messages} />
         <Route exact path="/events/:id" component={OneEvent} />
         {/* <Route exact path="/created" component={Profile} /> */}
         <Route exact path="/created/coming-events" component={MyEvents} />
