@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import NavTop from "../NavTop";
 import apiHandler from "../../api/apiHandler";
 import NavBottom from "../NavBottom";
 import dayjs from "dayjs";
+import { buildFormData } from "../../utils.js";
 import "../../styles/NavBar.css";
 const today = dayjs().format("YYYY-MM-DD");
 
-export default class FormCreateEvent extends Component {
+class FormCreateEvent extends Component {
   state = {
     date: today,
     sport: "",
@@ -14,7 +16,7 @@ export default class FormCreateEvent extends Component {
     country: "",
     meetingPoint: "",
     time: "09:00",
-    // eventImg: "https://res.cloudinary.com/djfnm2nsv/image/upload/v1610900465/Catch/high_five_cryocell_bkavwx.webp",
+    // eventImg: "",
     description: "",
     isComplete: "false",
     level: "",
@@ -26,7 +28,6 @@ export default class FormCreateEvent extends Component {
     const value = event.target.value;
     const key = event.target.name;
     this.setState({ [key]: value });
-    console.log(this.state);
   };
 
   handleSubmit = (event) => {
@@ -37,26 +38,34 @@ export default class FormCreateEvent extends Component {
     for (let key in this.state) {
       fd.append(key, this.state[key]);
     }
-    console.log("image ref", this.imageRef);
-    fd.append("eventImg", this.imageRef.current.files[0]);
 
-    // fd.append("isComplete",  this.state.isComplete)
-
-    // const eventId = this.props.match.params.id;
-    console.log("fd", fd);
-    console.log(this.imageRef.current.files[0]);
+    if (this.imageRef.current.files[0]) {
+      fd.append("eventImg", this.imageRef.current.files[0]);
+    }
 
     apiHandler
-      .addEvent({
-        fd,
-      })
-
-      .then((apiResponse) => {
-        console.log(apiResponse);
+      .addEvent(fd)
+      .then((data) => {
+        // clear form
+        // this.imageRef.current.reset();
+        // this.props.addEvent(data);
         this.props.history.push("/events");
+        this.setState({
+          date: today,
+          sport: "",
+          city: "",
+          country: "",
+          meetingPoint: "",
+          time: "09:00",
+
+          description: "",
+          isComplete: "false",
+          level: "",
+        });
+        console.log("form create props", this.props);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -66,9 +75,8 @@ export default class FormCreateEvent extends Component {
       <div /*className="main"*/>
         <NavTop />
         <div className="body">
-          {/* <div className="invisible">Oups you found me</div> */}
-
           <form
+            ref={this.formRef}
             className="formcreate"
             onSubmit={this.handleSubmit}
             encType="multipart/form-data"
@@ -100,7 +108,6 @@ export default class FormCreateEvent extends Component {
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.country}
-                // placeholder="In which country ?"
                 name="country"
                 id="country"
               />
@@ -115,7 +122,6 @@ export default class FormCreateEvent extends Component {
                 type="text"
                 onChange={this.handleChange}
                 value={this.state.city}
-                // placeholder="In which city ?"
                 name="city"
                 id="city"
               />
@@ -145,7 +151,6 @@ export default class FormCreateEvent extends Component {
                 type="date"
                 onChange={this.handleChange}
                 value={this.state.date}
-                // placeholder="When ?"
                 name="date"
                 id="date"
                 min={today}
@@ -162,7 +167,6 @@ export default class FormCreateEvent extends Component {
                 step="1800"
                 onChange={this.handleChange}
                 value={this.state.time}
-                // placeholder="At what time ?"
                 name="time"
                 id="time"
               />
@@ -174,7 +178,6 @@ export default class FormCreateEvent extends Component {
                 htmlFor="level"
                 style={{ marginBottom: "0" }}
               >
-                {/* Choose your level: */}
                 <select
                   value={this.state.value}
                   onChange={this.handleChange}
@@ -219,8 +222,6 @@ export default class FormCreateEvent extends Component {
             </div>
 
             <button>Create</button>
-
-            {/* <div className="fixBot"></div> */}
           </form>
         </div>
         <NavBottom path={this.props.history.location.pathname} />
@@ -228,3 +229,5 @@ export default class FormCreateEvent extends Component {
     );
   }
 }
+
+export default withRouter(FormCreateEvent);

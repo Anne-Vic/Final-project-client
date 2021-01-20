@@ -109,3 +109,16 @@ option {
   color: var(--main-color);
   border: none;
 }
+
+.field.full {
+  display: flex;
+  flex-direction: row;
+}
+
+.label.full {
+  max-width: 40vw;
+}
+
+.input.full {
+  max-width: 10vw;
+}

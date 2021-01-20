@@ -18,10 +18,22 @@ export default class Events extends Component {
     allEvents: [],
   };
 
-  // handleToggle = (value) => {
-  //     this.setState({ isComplete: !value });
-  //     console.log("key and value", value)
-  //   };
+  handleToggle = (eventId, currentCompletedValue) => {
+    console.log(eventId);
+    apiHandler
+      .updateEvent(eventId, { isComplete: !currentCompletedValue })
+      .then((apiResponse) => {
+        console.log("api", apiResponse);
+        const allEvents = this.state.allEvents.map((event) =>
+          event._id === apiResponse._id ? apiResponse : event
+        );
+        this.setState({ allEvents });
+        console.log("in toggle", allEvents);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   handleDelete = (eventId) => {
     apiHandler
@@ -50,12 +62,7 @@ export default class Events extends Component {
   }
 
   render() {
-    console.log("history", this.props.history.location.pathname);
-    console.log(
-      "check histo",
-      this.props.history.location.pathname === "/created/coming-events"
-    );
-    console.log("myevents", this.state.allEvents);
+    console.log("render", this.state.allEvents);
     return (
       <div>
         <NavTop />
@@ -63,11 +70,33 @@ export default class Events extends Component {
           <div className="btn profile">
             <NavLink exact to="/created/coming-events">
               {" "}
-              <button className="link profile">Coming events</button>{" "}
+              <button
+                style={{
+                  backgroundColor:
+                    this.props.history.location.pathname ===
+                    "/created/coming-events"
+                      ? "#ffa41b"
+                      : "#white",
+                }}
+                className="link profile"
+              >
+                Coming events
+              </button>{" "}
             </NavLink>
             <NavLink exact to="/created/past-events">
               {" "}
-              <button className="link profile">Past events</button>{" "}
+              <button
+                style={{
+                  backgroundColor:
+                    this.props.history.location.pathname ===
+                    "/created/past-events"
+                      ? "#ffa41b"
+                      : "#white",
+                }}
+                className="link profile"
+              >
+                Past events
+              </button>{" "}
             </NavLink>
           </div>
         </div>
@@ -127,14 +156,18 @@ export default class Events extends Component {
                               className="fas fa-toggle-on"
                               name="isComplete"
                               value={event.isComplete}
-                              onClick={() => this.handleToggle()}
+                              onClick={() =>
+                                this.handleToggle(event._id, event.isComplete)
+                              }
                             ></i>
                           ) : (
                             <i
                               className="fas fa-toggle-off"
                               name="isComplete"
                               value={event.isComplete}
-                              onClick={(event) => this.handleToggle(event._id)}
+                              onClick={() =>
+                                this.handleToggle(event._id, event.isComplete)
+                              }
                             ></i>
                           )}
                         </div>
@@ -194,11 +227,20 @@ export default class Events extends Component {
                               className="fas fa-toggle-on"
                               name="isComplete"
                               value={event.isComplete}
-                              onClick={() => this.handleToggle()}
+                              onClick={() =>
+                                this.handleToggle(event._id, event.isComplete)
+                              }
                             ></i>
                           )}
                           {!event.isComplete && (
-                            <i className="fas fa-toggle-off"></i>
+                            <i
+                              className="fas fa-toggle-off"
+                              name="isComplete"
+                              value={event.isComplete}
+                              onClick={() =>
+                                this.handleToggle(event._id, event.isComplete)
+                              }
+                            ></i>
                           )}
                         </div>
                       </div>

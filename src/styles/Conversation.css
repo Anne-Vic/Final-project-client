@@ -13,8 +13,8 @@
 
 .conv.message {
   margin: 0 2vh;
-  font-size: 0.8rem;
-  min-width: 50vw;
+  font-size: 0.7rem;
+  width: 50vw;
 }
 
 .conv.message p {
@@ -22,7 +22,7 @@
 }
 
 .conv.date {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   justify-content: end;
 }
 

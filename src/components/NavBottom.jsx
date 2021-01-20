@@ -4,8 +4,6 @@ import { NavLink } from "react-router-dom";
 import "../styles/NavBar.css";
 
 const NavBottom = (props) => {
-  console.log("props", props);
-  console.log("path", props.path);
   return (
     <nav className="NavBottom">
       <NavLink exact to="/created/coming-events" className="link">

@@ -30,18 +30,8 @@ export default class Messages extends Component {
     apiHandler
       .addMessage(eventId, { message: this.state.message })
       .then((data) => {
-        // console.log(data)
-        // this.context.setUser(data);
         this.formRef.current.reset();
         this.getMessages();
-
-        // const copy = [...this.state.messages];
-        // copy.push(data);
-
-        // this.setState({
-        //   message:"",
-        //   messages: copy
-        // })
       })
       .catch((error) => {
         console.log(error);
@@ -90,7 +80,7 @@ export default class Messages extends Component {
                             src={message.author.profileImg}
                             alt={message.author.username}
                           />
-                          <strong>{message.author.username}</strong>, on
+                          <strong>{message.author.username}</strong>, on{" "}
                           {String(message.createdAt).slice(0, 10)} :
                         </div>
                         <div>{message.message}</div>

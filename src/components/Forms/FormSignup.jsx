@@ -89,6 +89,7 @@ class FormSignup extends Component {
               type="file"
               id="profileImg"
               name="profileImg"
+              ref={this.imageRef}
             ></input>
           </div>
 

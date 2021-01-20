@@ -33,41 +33,14 @@ export default class Events extends Component {
     let filterLvl = this.state.allEvents.filter((event) =>
       this.state.level === "" ? true : this.state.level === event.level
     );
-    console.log("LEVEL", filterLvl);
-    console.log(this.state.filLevel);
     let filterLvlSpt = filterLvl.filter((event) =>
       this.state.sport === "" ? true : this.state.sport === event.sport
     );
-    console.log("LEVELSPORT", filterLvlSpt);
     let filterLvlSptCity = filterLvlSpt.filter((event) =>
       this.state.city === "" ? true : this.state.city === event.city
     );
-    console.log("ALL", filterLvlSptCity);
     return filterLvlSptCity;
-    // this.setState({filteredEvents : filterLvlSptCity})
   }
-
-  //   handleLevel = (ev) => {
-  //     this.setState({
-  //       filteredLevel: this.state.allEvents.filter((event) =>
-  //         event.level.includes(ev.target.value)
-  //       ),
-  //     });
-  //   };
-
-  //   handleLevel = (ev) => {
-  //     this.setState({
-  //       filLevel: ev.target.value
-  //     });
-  //   };
-
-  //   handleSport = (ev) => {
-  //     this.setState({
-  //       filteredSport: this.state.allEvents.filter((event) =>
-  //         event.sport.includes(ev.target.value)
-  //       ),
-  //     });
-  //   };
 
   handleChange = (ev) => {
     this.setState({
@@ -76,20 +49,7 @@ export default class Events extends Component {
     this.filterAll();
   };
 
-  // handleCity = (ev) => {
-  //     this.setState({
-  //       filCity: ev.target.value
-  //     });
-  //  };
-
   render() {
-    //     if (this.state.allEvents.length >0)
-    //     {const date1 = dayjs(this.state.allEvents[3].date, "YYYY-MM-DD")
-    // const today = dayjs()
-    // const diff = today.diff(date1, "d")
-    // console.log(this.state.allEvents[3])
-    //     console.log(diff)}
-    console.log(this.state);
     const lengthEvent = this.filterAll().filter(
       (event) => event.delay >= 0 && !event.isComplete
     ).length;
@@ -122,23 +82,6 @@ export default class Events extends Component {
               <>
                 <Card event={event} />
               </>
-              // <div  key={event._id}>
-              //     <Link className="cardEvent" to={`/events/${event._id}` }>
-              //     <div className="eventImg">
-              //         <img src={event.eventImg} alt={event.sport}/>
-              //     </div>
-              //     <div className="eventText">
-              //         <h1>{event.sport} - {event.city} </h1>
-              //         <br/>
-              //         <p>{event.date} - {event.time}</p>
-              //         <p>Level: {event.level}</p>
-              //         <br/>
-              //         <p>{event.description}</p>
-              //         <br/>
-              //         {event.owner && <p>Created by {event.owner.username} <img id="profileImg" src={event.owner.profileImg} alt={event.owner.username}/> </p>}
-              //     </div>
-              //     </Link>
-              // </div>
             );
           })}
 
