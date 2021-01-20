@@ -4,10 +4,9 @@ import { withRouter } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import apiHandler from "../../api/apiHandler";
 
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-import "../../styles/Form.css"
-
+import "../../styles/Form.css";
 
 class FormSignin extends Component {
   static contextType = UserContext;
@@ -46,20 +45,25 @@ class FormSignin extends Component {
 
     return (
       <section>
-        <NavLink exact to="/" className="NavTop"><i className="fas fa-home"></i></NavLink>
-        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-        <div className="field">
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="email" autoFocus={true} />
-        </div>
-        <div className="field">
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" required />
-        </div>
-        <button>Submit</button>
-      </form>
+        <NavLink exact to="/" className="NavTop">
+          <i className="fas fa-home"></i>
+        </NavLink>
+        <form
+          className="form"
+          onChange={this.handleChange}
+          onSubmit={this.handleSubmit}
+        >
+          <div className="field">
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" name="email" autoFocus={true} />
+          </div>
+          <div className="field">
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <button>Submit</button>
+        </form>
       </section>
-      
     );
   }
 }

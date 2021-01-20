@@ -12,7 +12,8 @@ import FormCreateEvent from "./components/Forms/FormCreateEvent";
 import FormUpdateEvent from "./components/Forms/FormUpdateEvent";
 import MyEvents from "./components/Views/MyEvents";
 import Extras from "./components/Views/Extras";
-import Messages from "./components/Views/Messages"
+import Messages from "./components/Views/Messages";
+import Conversation from "./components/Views/Conversation";
 
 function App() {
   return (
@@ -24,15 +25,15 @@ function App() {
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/events" component={Events} />
         <Route exact path="/events/create" component={FormCreateEvent} />
-        <Route exact path="/messages/by-event/:id" component={Messages} />
         <Route exact path="/events/:id" component={OneEvent} />
+        <Route exact path="/messages/by-event/:id" component={Messages} />
+        <Route exact path="/messages/my-messages" component={Conversation} />
         {/* <Route exact path="/created" component={Profile} /> */}
         <Route exact path="/created/coming-events" component={MyEvents} />
         <Route exact path="/created/past-events" component={MyEvents} />
         <Route exact path="/update/:id" component={FormUpdateEvent} />
         <Route exact path="/more" component={Extras} />
 
-        
         <ProtectedRoute exact path="/profile" component={Profile} />
       </Switch>
     </div>

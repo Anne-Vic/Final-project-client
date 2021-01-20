@@ -74,6 +74,13 @@ export default {
       .catch(errorHandler);
   },
 
+  getMyMessages() {
+    return service
+      .get("/api/messages/mine")
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   addMessage(eventId, data) {
     return service
       .post(`/api/messages/by-event/${eventId}`, data)

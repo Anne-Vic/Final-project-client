@@ -1,0 +1,59 @@
+/* CONVERSATION */
+.all.conv {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+
+.event.conv {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2vh;
+}
+
+.conv.message {
+  margin: 0 2vh;
+  font-size: 0.8rem;
+  min-width: 50vw;
+}
+
+.conv.message p {
+  overflow: hidden;
+}
+
+.conv.date {
+  font-size: 0.8rem;
+  justify-content: end;
+}
+
+/* MESSAGES */
+
+#form-messages {
+  display: flex;
+  justify-content: space-between;
+  height: 10vh;
+}
+
+.messages input {
+  max-width: 65vw;
+  padding: 0 1vw;
+  /* border-radius: 5px; */
+}
+
+.messages button {
+  background-color: transparent;
+  margin-left: 3vw;
+}
+
+.messages button i {
+  color: var(--second-color);
+  font-size: 3vh;
+}
+
+.author.message {
+  display: flex;
+}
+
+.author.message strong {
+  margin-left: 2vw;
+}

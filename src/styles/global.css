@@ -48,6 +48,13 @@ i {
   -webkit-filter: grayscale(100%);
 }
 
+.body {
+  margin: 13vh 5vw;
+  border: 2px solid var(--main-color);
+  border-radius: 20px;
+  padding: 5%;
+}
+
 button {
   background-color: var(--second-color);
   color: var(--main-color);
@@ -77,4 +84,23 @@ button {
 #profileImg {
   border-radius: 50%;
   object-fit: cover;
+}
+
+.popup {
+  width: 55vw;
+  height: 30vh;
+  background-color: var(--second-color);
+  color: white;
+  position: fixed;
+  top: 30vh;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup p {
+  width: 40vw;
+  font-weight: bold;
+  text-align: center;
 }

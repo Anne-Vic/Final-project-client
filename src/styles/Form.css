@@ -1,6 +1,6 @@
 /* SIGN IN / SIGN UP */
 
-form {
+.form {
   display: flex;
   flex-direction: column;
   height: 80vh;
@@ -8,7 +8,7 @@ form {
   justify-content: center;
 }
 
-form .field {
+.form .field {
   display: flex;
   flex-direction: column;
   margin: 3vh 0;
@@ -40,7 +40,7 @@ span {
   visibility: hidden;
 }
 
-form button {
+.form button {
   width: 45vw;
   height: 5vh;
   /* font-size: 1.5rem; */
@@ -48,7 +48,7 @@ form button {
   align-self: center;
 }
 
-form p,
+.form p,
 h3 {
   align-self: center;
 }
@@ -89,4 +89,23 @@ option {
 
 .main .field.upload {
   margin-bottom: 0;
+}
+
+/* FORM CREATE */
+.formcreate {
+  display: flex;
+  flex-direction: column;
+}
+
+.formcreate .field {
+  display: flex;
+  flex-direction: column;
+  margin: 1vh 0;
+}
+
+.formcreate select,
+option {
+  background-color: white;
+  color: var(--main-color);
+  border: none;
 }

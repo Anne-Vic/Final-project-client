@@ -13,7 +13,7 @@ class FormSignup extends Component {
     username: "",
     email: "",
     password: "",
-    profileImg : "/Profil.PNG"
+    profileImg: "/Profil.PNG",
   };
 
   handleChange = (event) => {
@@ -43,52 +43,65 @@ class FormSignup extends Component {
 
     return (
       <section>
-      <NavLink exact to="/" className="NavTop"><i className="fas fa-home"></i></NavLink>
-      <form onSubmit={this.handleSubmit}>
-        <div className="field">
-        <label htmlFor="username">Username</label>
-        <input
-          onChange={this.handleChange}
-          value={this.state.username}
-          type="text"
-          id="username"
-          name="username"
-          autoFocus={true}
-        />
-        </div>
-        <div className="field">
-        <label htmlFor="email">Email</label>
-        <input
-          onChange={this.handleChange}
-          value={this.state.email}
-          type="email"
-          id="email"
-          name="email"
-        />
-        </div>
-        <div className="field">
-        <label htmlFor="password">Password</label>
-        <input
-          onChange={this.handleChange}
-          value={this.state.password}
-          type="password"
-          id="password"
-          name="password"
-        />
-        </div>
+        <NavLink exact to="/" className="NavTop">
+          <i className="fas fa-home"></i>
+        </NavLink>
+        <form className="form" onSubmit={this.handleSubmit}>
+          <div className="field">
+            <label htmlFor="username">Username</label>
+            <input
+              onChange={this.handleChange}
+              value={this.state.username}
+              type="text"
+              id="username"
+              name="username"
+              autoFocus={true}
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="email">Email</label>
+            <input
+              onChange={this.handleChange}
+              value={this.state.email}
+              type="email"
+              id="email"
+              name="email"
+            />
+          </div>
+          <div className="field">
+            <label htmlFor="password">Password</label>
+            <input
+              onChange={this.handleChange}
+              value={this.state.password}
+              type="password"
+              id="password"
+              name="password"
+            />
+          </div>
 
-        <div className="field upload">
-        <label className="label" htmlFor="profileImg">
-        Upload a profile picture <span>-------</span>
-        <i className="icon fas fa-cloud-upload-alt"></i>
-        </label>
-        <input className="hidden" type="file" id="profileImg" name="profileImg"></input>
-        </div>
+          <div className="field upload">
+            <label className="label" htmlFor="profileImg">
+              Upload a profile picture <span>-------</span>
+              <i className="icon fas fa-cloud-upload-alt"></i>
+            </label>
+            <input
+              className="hidden"
+              type="file"
+              id="profileImg"
+              name="profileImg"
+            ></input>
+          </div>
 
-        <button>Submit</button>
-        <br/>
-        <p>Already have an account ?<Link className="signin" to="/signin"> Sign in</Link></p>
-      </form>
+          <button>Submit</button>
+          <br />
+          <p>
+            Already have an account ?
+            <Link className="signin" to="/signin">
+              {" "}
+              Sign in
+            </Link>
+          </p>
+        </form>
       </section>
     );
   }

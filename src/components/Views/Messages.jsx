@@ -1,98 +1,127 @@
-import React, { Component } from 'react';
-import axios from "axios";
-import { NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import apiHandler from "../../api/apiHandler";
-import NavTop from '../NavTop';
-import NavBottom from '../NavBottom';
+import NavTop from "../NavTop";
+import NavBottom from "../NavBottom";
 
-import "../../styles/Card.css";
+import "../../styles/Conversation.css";
 
 export default class Messages extends Component {
-    state = {
-        messages : null,
-        message : "",
-    }
+  state = {
+    messages: null,
+    message: "",
+    event: null,
+  };
 
-    formRef = React.createRef();
+  formRef = React.createRef();
 
-    handleChange = (event) => {
-      const value = event.target.value;
-      const key = event.target.name;
-      this.setState({ [key]: value });
-      console.log(this.state)
-     
-    };
+  handleChange = (event) => {
+    const value = event.target.value;
+    const key = event.target.name;
+    this.setState({ [key]: value });
+    console.log(this.state);
+  };
 
-    handleSubmit = (event) => {
-      event.preventDefault();
+  handleSubmit = (event) => {
+    event.preventDefault();
 
-      const eventId = this.props.match.params.id;
-      console.log("Add message Id", eventId)
+    const eventId = this.props.match.params.id;
+    console.log("Add message Id", eventId);
 
-      apiHandler
-        .addMessage(eventId, {message : this.state.message})
-        .then((data) => {
-          // this.context.setUser(data);
-          this.componentDidMount();
-          this.formRef.current.reset()
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
+    apiHandler
+      .addMessage(eventId, { message: this.state.message })
+      .then((data) => {
+        // console.log(data)
+        // this.context.setUser(data);
+        this.formRef.current.reset();
+        this.getMessages();
 
+        // const copy = [...this.state.messages];
+        // copy.push(data);
 
-    componentDidMount() {
-      const eventId = this.props.match.params.id;
-      console.log(eventId);
-        apiHandler.getMessages(eventId).then((data) => {
-          this.setState({ messages: data });
-        });
-      }
+        // this.setState({
+        //   message:"",
+        //   messages: copy
+        // })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
+  componentDidMount() {
+    apiHandler.getOneEvent(this.props.match.params.id).then((data) => {
+      this.setState({ event: data });
+    });
+    this.getMessages();
+  }
 
-    render() {
-        if (!this.state.messages) {
-            return <div><NavTop/>Message is loading...</div>;
-          }
-          console.log( this.state.messages.length)
-          console.log(typeof this.state.messages)
-        return (
-            <div>
-                <NavTop/>
-                <div className="invisible" >Oups you found me</div>
-                <div className="middle card one">
-                <strong className="center"></strong>
-                {this.state.messages.length === 0 && <div>Start the conversation</div>}
-                {this.state.messages.length > 0 && <strong>{this.state.messages[0].event.sport} - {this.state.messages[0].event.city} - {this.state.messages[0].event.date}</strong>}
-                {this.state.messages.length > 0 &&
-                <div style={{overflow:"scroll", height:"60vh"}}>
-                  {this.state.messages.map(message => {
-                    return (
-                        <div>
-                          <div className="message">
-                            <br/>
-                            <div>{message.author.username} sent on {String(message.createdAt).slice(0,10)} :</div>
-                            <div>{message.message}</div>
-                            
-                          </div>
+  getMessages() {
+    const eventId = this.props.match.params.id;
+    apiHandler.getMessages(eventId).then((data) => {
+      this.setState({ messages: data });
+    });
+  }
+
+  render() {
+    if (!this.state.event) return <div>Loading...</div>;
+
+    return (
+      <div>
+        <NavBottom />
+        <div className="body">
+          <div className="chat">
+            <strong>
+              {this.state.event.sport} - {this.state.event.city} -
+              {this.state.event.date}
+            </strong>
+            {this.state.messages && this.state.messages.length === 0 && (
+              <div>Start the conversation</div>
+            )}
+            {this.state.messages && this.state.messages.length > 0 && (
+              <div style={{ overflow: "scroll", height: "60vh" }}>
+                {this.state.messages.map((message) => {
+                  return (
+                    <div key={message._id}>
+                      <div className="message">
+                        <br />
+                        <div className="author message">
+                          <img
+                            id="profileImg"
+                            src={message.author.profileImg}
+                            alt={message.author.username}
+                          />
+                          <strong>{message.author.username}</strong>, on
+                          {String(message.createdAt).slice(0, 10)} :
                         </div>
-                    )
+                        <div>{message.message}</div>
+                      </div>
+                    </div>
+                  );
                 })}
-                </div>}
-                <form onSubmit={this.handleSubmit} ref={this.formRef} >
-                <div className="field">
-                <label className="label" htmlFor="description">New message:</label>
-                <textarea maxLength="100" rows="3" value={this.state.value} onChange={this.handleChange} name="message" id="message" placeholder="Write on the event conversation"/>
-                </div>
-                <button>Post</button>
-                </form>
-                </div>
-                <NavBottom/>  
-            </div>
-     
-        )
-        
-    }
+              </div>
+            )}
+          </div>
+          <div className="messages">
+            <form
+              ref={this.formRef}
+              id="form-message"
+              onSubmit={this.handleSubmit}
+            >
+              <input
+                maxLength="100"
+                value={this.state.message}
+                onChange={this.handleChange}
+                name="message"
+                placeholder="Your message..."
+              />
+              <button>
+                <i className="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <NavTop />
+      </div>
+    );
+  }
 }
