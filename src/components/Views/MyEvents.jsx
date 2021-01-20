@@ -29,6 +29,7 @@ export default class Events extends Component {
         );
         this.setState({ allEvents });
         console.log("in toggle", allEvents);
+        // this.getMyEvents();
       })
       .catch((err) => {
         console.log(err);
@@ -61,8 +62,17 @@ export default class Events extends Component {
     });
   }
 
+  // ADD AVD
+  // getMyEvents() {
+  //   apiHandler.getMyEvents().then((data) => {
+  //     this.setState({ allEvents: data });
+  //   });
+  // }
+  // ADD AVD
+
   render() {
     console.log("render", this.state.allEvents);
+    console.log("path", this.props.history.location.pathname);
     return (
       <div>
         <NavTop />
@@ -76,7 +86,7 @@ export default class Events extends Component {
                     this.props.history.location.pathname ===
                     "/created/coming-events"
                       ? "#ffa41b"
-                      : "#white",
+                      : "white",
                 }}
                 className="link profile"
               >
@@ -91,7 +101,7 @@ export default class Events extends Component {
                     this.props.history.location.pathname ===
                     "/created/past-events"
                       ? "#ffa41b"
-                      : "#white",
+                      : "white",
                 }}
                 className="link profile"
               >
@@ -102,6 +112,9 @@ export default class Events extends Component {
         </div>
 
         <div className="middle">
+          {this.props.history.location.pathname === "/created/coming-events" &&
+            this.state.allEvents.filter((event) => event.delay >= 0).length ===
+              0 && <strong>No coming events</strong>}
           {this.props.history.location.pathname === "/created/coming-events" &&
             this.state.allEvents
               .filter((event) => event.delay >= 0)
@@ -176,6 +189,9 @@ export default class Events extends Component {
                   </div>
                 );
               })}
+          {this.props.history.location.pathname === "/created/past-events" &&
+            this.state.allEvents.filter((event) => event.delay < 0).length ===
+              0 && <strong>No past events</strong>}
           {this.props.history.location.pathname === "/created/past-events" &&
             this.state.allEvents
               .filter((event) => event.delay < 0)

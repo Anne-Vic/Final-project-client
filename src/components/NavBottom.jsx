@@ -11,7 +11,10 @@ const NavBottom = (props) => {
           className="fas fa-user-circle"
           style={{
             color:
-              props.path === "/created/coming-events" ? "#ffa41b" : "#0c084c",
+              props.path === "/created/coming-events" ||
+              props.path === "/created/past-events"
+                ? "#ffa41b"
+                : "#0c084c",
           }}
         ></i>
       </NavLink>

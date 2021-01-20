@@ -104,3 +104,7 @@ button {
   font-weight: bold;
   text-align: center;
 }
+
+.middle strong {
+  align-self: center;
+}

@@ -31,6 +31,7 @@ export default class Messages extends Component {
       .addMessage(eventId, { message: this.state.message })
       .then((data) => {
         this.formRef.current.reset();
+        this.setState({ message: "" });
         this.getMessages();
       })
       .catch((error) => {
@@ -68,7 +69,7 @@ export default class Messages extends Component {
               <div>Start the conversation</div>
             )}
             {this.state.messages && this.state.messages.length > 0 && (
-              <div style={{ overflow: "scroll", height: "60vh" }}>
+              <div style={{ overflowY: "scroll", height: "60vh" }}>
                 {this.state.messages.map((message) => {
                   return (
                     <div key={message._id}>

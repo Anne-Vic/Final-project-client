@@ -88,6 +88,13 @@ export default {
       .catch(errorHandler);
   },
 
+  deleteMessage(messageId) {
+    return service
+      .delete(`/api/messages/${messageId}`)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
   addEvent(data) {
     return service
       .post("/api/events", data)

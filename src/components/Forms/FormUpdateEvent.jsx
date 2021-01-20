@@ -187,6 +187,7 @@ export default class FormUpdateEvent extends Component {
                   onChange={this.handleChange}
                   name="level"
                   id="level"
+                  // defaultValue={this.state.value}
                 >
                   <option value="Beginner">Beginner</option>
                   <option value="Intermediate">Intermediate</option>

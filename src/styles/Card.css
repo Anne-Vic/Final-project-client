@@ -125,6 +125,10 @@ hr {
   z-index: 1;
 }
 
+.btn.profile button {
+  border: 1px solid var(--second-color);
+}
+
 .link.profile {
   width: 50vw;
   height: 6vh;

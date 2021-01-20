@@ -12,7 +12,7 @@
 }
 
 .conv.message {
-  margin: 0 2vh;
+  margin: 0 1vh;
   font-size: 0.7rem;
   width: 50vw;
 }
@@ -23,7 +23,14 @@
 
 .conv.date {
   font-size: 0.7rem;
-  justify-content: end;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.conv.date i {
+  font-size: 2vh;
+  padding-top: 1vh;
 }
 
 /* MESSAGES */

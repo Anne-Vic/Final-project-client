@@ -16,6 +16,21 @@ export default class Conversation extends Component {
     myMessages: [],
   };
 
+  handleDelete = (messageId) => {
+    apiHandler
+      .deleteMessage(messageId)
+      .then((apiResponse) => {
+        this.setState({
+          myMessages: this.state.myMessages.filter(
+            (message) => message._id !== messageId
+          ),
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   componentDidMount() {
     apiHandler.getMyMessages().then((data) => {
       this.setState({ myMessages: data });
@@ -49,7 +64,11 @@ export default class Conversation extends Component {
     return (
       <div>
         <NavTop />
+
         <div className="body">
+          {this.state.myMessages.length === 0 && (
+            <strong>No message yet</strong>
+          )}
           {/* {events.map((event) => (
             <div key={event.event._id}>
               <h1>{event.event.sport}</h1>
@@ -63,28 +82,42 @@ export default class Conversation extends Component {
           {events.map((event) => (
             <div className="all conv" key={event.event._id}>
               {event.messages.map((message) => (
-                <NavLink
-                  exact
-                  to={`/messages/by-event/${message.event._id}`}
-                  className="event conv"
-                  key={message._id}
-                >
-                  <img
-                    id="profileImg"
-                    src={message.author.profileImg}
-                    alt={message.author.username}
-                  />
-                  <div className="conv message">
-                    <strong>{message.author.username}</strong>
-                    <p>{message.message}</p>
-                    <p>
-                      {message.event.sport} - {message.event.date.slice(2)}
-                    </p>
-                  </div>
+                <div className="event conv">
+                  <NavLink
+                    exact
+                    to={`/messages/by-event/${message.event._id}`}
+                    // className="event conv"
+                    key={message._id}
+                  >
+                    <img
+                      id="profileImg"
+                      src={message.author.profileImg}
+                      alt={message.author.username}
+                    />
+                  </NavLink>
+                  <NavLink
+                    exact
+                    to={`/messages/by-event/${message.event._id}`}
+                    // className="event conv"
+                    key={message._id}
+                  >
+                    <div className="conv message">
+                      <strong>{message.author.username}</strong>
+                      <p>{message.message}</p>
+                      <p>
+                        {message.event.sport} - {message.event.date.slice(2)}
+                      </p>
+                    </div>
+                  </NavLink>
+
                   <div className="conv date">
                     <p>{message.createdAt.slice(2, 10)}</p>
+                    <i
+                      className="fas fa-trash"
+                      onClick={() => this.handleDelete(message._id)}
+                    ></i>
                   </div>
-                </NavLink>
+                </div>
               ))}
             </div>
           ))}

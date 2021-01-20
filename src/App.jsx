@@ -28,6 +28,7 @@ function App() {
         <Route exact path="/events/:id" component={OneEvent} />
         <Route exact path="/messages/by-event/:id" component={Messages} />
         <Route exact path="/messages/my-messages" component={Conversation} />
+        <Route exact path="/messages/:id" component={Conversation} />
         {/* <Route exact path="/created" component={Profile} /> */}
         <Route exact path="/created/coming-events" component={MyEvents} />
         <Route exact path="/created/past-events" component={MyEvents} />
