@@ -18,7 +18,8 @@
 }
 
 .card.one {
-  min-height: 75vh;
+  min-height: 70vh;
+  max-height: 75vh;
   position: relative;
   margin: 5% 6%;
 }
