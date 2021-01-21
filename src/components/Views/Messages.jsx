@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import apiHandler from "../../api/apiHandler";
 import NavTop from "../NavTop";
 import NavBottom from "../NavBottom";
@@ -87,12 +87,17 @@ export default class Messages extends Component {
         <NavBottom />
         <div className="body">
           <div className="chat">
-            <strong>
+            <strong style={{ display: "flex", justifyContent: "center" }}>
               {this.state.event.sport} - {this.state.event.city} -
               {this.state.event.date}
             </strong>
             {this.state.messages && this.state.messages.length === 0 && (
-              <div>Start the conversation</div>
+              <div>
+                <br />
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  Start the conversation
+                </div>
+              </div>
             )}
             {this.state.messages && this.state.messages.length > 0 && (
               <div style={{ overflowY: "scroll", height: "60vh" }}>

@@ -53,6 +53,7 @@ i {
   border: 2px solid var(--main-color);
   border-radius: 20px;
   padding: 5%;
+  min-height: 73vh;
 }
 
 button {
@@ -108,3 +109,12 @@ button {
 .middle strong {
   align-self: center;
 }
+
+.chat {
+  min-height: 63vh;
+}
+
+/* .form-message {
+  position: relative;
+  bottom: 10vh;
+} */

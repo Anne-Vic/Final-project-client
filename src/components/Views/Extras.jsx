@@ -29,12 +29,14 @@ class Extras extends Component {
   };
 
   render() {
+    // console.log("context", this.props.context.user.username);
     return (
       <div>
         <NavTop />{" "}
         <div className="Extras">
           {!this.state.display && (
             <React.Fragment>
+              {/* <strong>{this.props.context.user}</strong> */}
               <button onClick={this.handlePopUp}>Stat</button>
               <button onClick={this.handlePopUp}>Chrono</button>
               <button onClick={this.handlePopUp}>Update profile</button>
