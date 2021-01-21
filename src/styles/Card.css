@@ -157,6 +157,14 @@ hr {
   flex-direction: row;
 }
 
+.cardEvent.create .description {
+  /* max-width: 75vw;
+  margin: 0; */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .manage.event {
   display: flex;
   justify-content: space-around;

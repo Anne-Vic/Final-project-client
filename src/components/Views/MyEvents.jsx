@@ -147,7 +147,9 @@ export default class Events extends Component {
                           </div>
                         </div>
                       </Link>
-                      <p>{event.description}</p>
+                      <div className="description">
+                        <p className="description">{event.description}</p>
+                      </div>
                       <div className="eventManage">
                         <div className="manage event">
                           <NavLink

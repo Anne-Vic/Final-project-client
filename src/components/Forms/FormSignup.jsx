@@ -13,8 +13,10 @@ class FormSignup extends Component {
     username: "",
     email: "",
     password: "",
-    profileImg: "/Profil.PNG",
+    // profileImg: "/Profil.PNG",
   };
+
+  imageRef = React.createRef();
 
   handleChange = (event) => {
     const value = event.target.value;
@@ -26,8 +28,18 @@ class FormSignup extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
+    const fd = new FormData();
+
+    for (let key in this.state) {
+      fd.append(key, this.state[key]);
+    }
+
+    if (this.imageRef.current.files[0]) {
+      fd.append("profileImg", this.imageRef.current.files[0]);
+    }
+
     apiHandler
-      .signup(this.state)
+      .signup(fd)
       .then((data) => {
         this.context.setUser(data);
       })
