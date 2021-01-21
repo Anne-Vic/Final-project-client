@@ -33,6 +33,32 @@ export default class Messages extends Component {
         this.formRef.current.reset();
         this.setState({ message: "" });
         this.getMessages();
+        if (this.state.messages === null) {
+          return "ok";
+        } else {
+          console.log(
+            "getmessages",
+            this.state.messages.map((message) => message._id)
+          );
+          const messagesToDelete = this.state.messages.map(
+            (message) => message._id
+          );
+          console.log("array", messagesToDelete);
+          messagesToDelete.forEach((messageId) =>
+            apiHandler
+              .deleteMessage(messageId)
+              .then((apiResponse) => {
+                this.setState({
+                  messages: this.state.messages.filter(
+                    (message) => message._id !== messageId
+                  ),
+                });
+              })
+              .catch((error) => {
+                console.log(error);
+              })
+          );
+        }
       })
       .catch((error) => {
         console.log(error);

@@ -29,7 +29,7 @@ const Card = (props) => {
             <p>Level: {props.event.level}</p>
           </div>
         </div>
-        <div>
+        <div className="description">
           <p>{props.event.description}</p>
           {/* <br/> */}
         </div>

@@ -82,7 +82,7 @@ export default class Conversation extends Component {
           {events.map((event) => (
             <div className="all conv" key={event.event._id}>
               {event.messages.map((message) => (
-                <div className="event conv">
+                <div className="event conv" key={message.event._id}>
                   <NavLink
                     exact
                     to={`/messages/by-event/${message.event._id}`}

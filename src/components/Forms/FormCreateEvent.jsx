@@ -95,6 +95,7 @@ class FormCreateEvent extends Component {
                 placeholder="Tennis, Running, Boxing..."
                 name="sport"
                 id="sport"
+                autoFocus={true}
               />
             </div>
 

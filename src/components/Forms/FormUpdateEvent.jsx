@@ -103,6 +103,7 @@ export default class FormUpdateEvent extends Component {
                 value={this.state.sport}
                 name="sport"
                 id="sport"
+                autoFocus={true}
               />
             </div>
 
