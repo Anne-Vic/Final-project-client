@@ -111,8 +111,8 @@ export default class Messages extends Component {
                             src={message.author.profileImg}
                             alt={message.author.username}
                           />
-                          <strong>{message.author.username}</strong>
-                          <br />, on {String(message.createdAt).slice(0, 10)} :
+                          <strong>{message.author.username}</strong>, on{" "}
+                          {String(message.createdAt).slice(0, 10)} :
                         </div>
                         <div>{message.message}</div>
                       </div>
