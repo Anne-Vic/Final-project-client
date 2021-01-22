@@ -39,7 +39,6 @@ export default class Conversation extends Component {
 
   render() {
     if (!this.state.myMessages) return <div>Loading...</div>;
-    console.log("my messages", this.state.myMessages);
     const myEvents = [
       ...new Set(this.state.myMessages.map((message) => message.event._id)),
     ];
@@ -50,8 +49,6 @@ export default class Conversation extends Component {
       const currentEvent = messages[0].event;
       return { event: currentEvent, messages };
     });
-
-    console.log("EVENTS FORMATED", events);
 
     const eventToDisplay = [
       { event: {}, messages: [{}] },

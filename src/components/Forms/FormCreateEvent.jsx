@@ -62,7 +62,6 @@ class FormCreateEvent extends Component {
           isComplete: "false",
           level: "",
         });
-        console.log("form create props", this.props);
       })
       .catch((error) => {
         console.log(error);
@@ -70,7 +69,6 @@ class FormCreateEvent extends Component {
   };
 
   render() {
-    console.log("today", String(today));
     return (
       <div /*className="main"*/>
         <NavTop />

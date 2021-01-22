@@ -28,7 +28,6 @@ export default class Events extends Component {
           event._id === apiResponse._id ? apiResponse : event
         );
         this.setState({ allEvents });
-        console.log("in toggle", allEvents);
         // this.getMyEvents();
       })
       .catch((err) => {
@@ -71,8 +70,6 @@ export default class Events extends Component {
   // ADD AVD
 
   render() {
-    console.log("render", this.state.allEvents);
-    console.log("path", this.props.history.location.pathname);
     return (
       <div>
         <NavTop />
@@ -219,7 +216,7 @@ export default class Events extends Component {
                             </p>
                             <br />
                             <p>
-                              {event.date} @ {event.time} D-{event.delay}
+                              {event.date} @ {event.time}
                             </p>
                             <p>Level: {event.level}</p>
                           </div>

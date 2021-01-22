@@ -18,7 +18,6 @@ export default class Messages extends Component {
     const value = event.target.value;
     const key = event.target.name;
     this.setState({ [key]: value });
-    console.log(this.state);
   };
 
   handleSubmit = (event) => {

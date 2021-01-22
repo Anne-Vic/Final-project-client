@@ -13,7 +13,7 @@ export default class OneEvent extends Component {
 
   componentDidMount() {
     const eventId = this.props.match.params.id;
-    console.log(eventId);
+
     apiHandler.getOneEvent(eventId).then((data) => {
       this.setState({ event: data });
     });
@@ -28,7 +28,7 @@ export default class OneEvent extends Component {
         </div>
       );
     }
-    console.log("one event", this.state.event);
+
     return (
       <div>
         <NavTop />

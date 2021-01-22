@@ -29,7 +29,6 @@ class Extras extends Component {
   };
 
   render() {
-    // console.log("context", this.props.context.user.username);
     return (
       <div>
         <NavTop />{" "}
